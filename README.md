@@ -13,6 +13,13 @@ dependencies or provider credentials are required to run the public tests:
 npm test
 ```
 
+The single-file public suite uses Node's in-process test mode because captured
+child-process streams can be lost in the pinned Codex Linux sandbox. Test
+assertions are unchanged. This is not a removal of the agent's OS sandbox or
+the independently isolated private grader. See
+[Codex issue18473](https://github.com/openai/codex/issues/18473) and
+[Node22 CLI documentation](https://nodejs.org/download/release/v22.23.0/docs/api/cli.html#--experimental-test-isolationmode).
+
 The frozen starting point intentionally produces three passes and one failure:
 a retry with a new attempt ID incorrectly applies the same logical job twice.
 Do not pre-fix it before the real coding-agent rehearsal.
